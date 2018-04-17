@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <Wire.h>
 //#include <LiquidCrystal.h> 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -161,7 +160,7 @@ void accelLoop() {
 
     //display lcd vertigan safe
     lcd.clear();
-    lcd.print("SAVE");
+    lcd.print("SAFE");
     
     delay(333);
   }
