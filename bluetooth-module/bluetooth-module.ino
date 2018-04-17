@@ -6,7 +6,7 @@ const int buttonPin = 4;
 void setup() {
   Serial.begin(9600); // initialization
   pinMode(LED, OUTPUT);
-//  Serial.println("Press 1 to LED ON or 0 to LED OFF...");
+  Serial.println("Press 1 to LED ON or 0 to LED OFF...");
   digitalWrite(LED, HIGH);  // if 1, switch LED Off
 }
 
@@ -28,7 +28,8 @@ void loop() {
 void pushButtonListener() {
     buttonState = digitalRead(buttonPin);
     if (buttonState) {
-      Serial.println("1");
-      delay(1000);
+      Serial.println("0");
+      Serial.write("1");
+      delay(30);
     }
 }
