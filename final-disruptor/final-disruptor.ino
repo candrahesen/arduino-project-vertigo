@@ -105,9 +105,9 @@ void printLocation() {
 
   //display LCD help
   lcd.clear();
-  lcd.print("HELP MESSAGE");
+  lcd.print("HELP ME AT");
   lcd.setCursor(0,1);
-  lcd.print("SENT!");
+  lcd.print("Lt:" + String(lat, 1) + ",Lg:" + String(lon, 1));
 
   delay(5000);
 }
