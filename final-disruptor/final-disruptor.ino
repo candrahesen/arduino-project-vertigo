@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+//#include <Wire.h>
+//#include <LiquidCrystal.h> 
 #include <Wire.h>
-#include <LiquidCrystal.h> 
+#include <LiquidCrystal_I2C.h>
 #include "SoftwareSerial.h"
 #include "TinyGPS.h"
 float lat = 28.5458,lon = 77.1703; // create variable for latitude and longitude object  
@@ -31,6 +33,9 @@ int threshold = 2000; // batas perubahan yg ditolerir
 int buttonState = 0;
 const int buttonPin = 4;
 
+//// LCD i2c
+LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+
 void setup(){ 
     Serial.begin(9600); // connect serial 
     Serial.println("The GPS Received Signal:"); 
@@ -55,6 +60,11 @@ void setup(){
     Wire.write(0x6B); 
     Wire.write(0);    
     Wire.endTransmission(true);
+
+    // LCD
+    lcd.begin(16,2);
+//    lcd.clear();
+//    lcd.print("HELP");
 } 
 
 void loop(){ 
@@ -72,6 +82,8 @@ void loop(){
     if (jatuh) {
       printLocation();
     }
+
+    
   
     accelLoop();
 } 
@@ -91,6 +103,10 @@ void printLocation() {
   
     // Kirimkan lokasi LatLng ke Server!
     kirimKeServer(latitude, longitude);
+
+    //display LCD help
+    lcd.clear();
+    lcd.print("HELP");
     
     delay(5000);
 }
@@ -142,6 +158,11 @@ void accelLoop() {
     Serial.print(" | Y = "); Serial.print(GyY);
     Serial.print(" | Z = "); Serial.println(GyZ);
     Serial.println(" ");
+
+    //display lcd vertigan safe
+    lcd.clear();
+    lcd.print("SAVE");
+    
     delay(333);
   }
 
