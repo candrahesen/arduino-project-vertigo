@@ -28,8 +28,7 @@ void loop() {
 void pushButtonListener() {
     buttonState = digitalRead(buttonPin);
     if (buttonState) {
-      Serial.println("0");
-      Serial.write("1");
+      Serial.print("0");
       delay(30);
     }
 }
